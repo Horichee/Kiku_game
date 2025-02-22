@@ -2,7 +2,7 @@ let mice = [];
 let touchCount = 0;
 let comboCount = 0;
 let lastTouchTime = 0;
-let touchRadius = 200;
+let touchRadius = 300;
 let mouseCount = 3;
 let bgm;
 let touchSound;
@@ -117,7 +117,7 @@ class Mouse {
     }
 
     display() {
-        image(ratImg, this.x, this.y, 200, 200);
+        image(ratImg, this.x, this.y, 300, 300);
     }
 
     isTouched(mx, my) {
