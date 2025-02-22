@@ -3,7 +3,7 @@ let touchCount = 0;
 let comboCount = 0;
 let lastTouchTime = 0;
 let touchRadius = 300;
-let mouseCount = 3;
+let mouseCount = 1;
 let bgm;
 let touchSound;
 let ComboSound; 
