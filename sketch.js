@@ -23,6 +23,11 @@ function preload() {
 function setup() {
     createCanvas(windowWidth, windowHeight);
 
+            // タッチスクロール防止
+    document.body.addEventListener('touchmove', function(event) {
+        event.preventDefault();
+    });
+
     for (let i = 0; i < mouseCount; i++) {
         mice.push(new Mouse());
     }
@@ -65,18 +70,23 @@ class Mouse {
         this.y = random(height);
         this.speedX = random(2, 5);
         this.speedY = random(2, 5);
-        this.maxSpeed = 25;
-        this.acceleration = 0.15;
+        this.maxSpeed = 20;
+        this.acceleration = 2;
         this.angle = random(TWO_PI);
-        this.turnChance = 0.01;
+        this.turnChance = 0.3;
+        this.stopChance = 0.03;
     }
     move() {
         if (random() < this.turnChance) {
             this.angle += random(-PI / 4, PI / 4);
         }
+        if (random() < this.stopChance) {
+            this.speedX = 0;
+            this.speedY = 0;
+        }
 
-        this.speedX += cos(this.angle) * this.acceleration;
-        this.speedY += sin(this.angle) * this.acceleration;
+        this.speedX += cos(this.angle) * this.acceleration*random();
+        this.speedY += sin(this.angle) * this.acceleration*random();
 
         let speed = dist(0, 0, this.speedX, this.speedY);
         if (speed > this.maxSpeed) {
@@ -122,7 +132,7 @@ function mousePressed() {
             touchCount++;
 
             let currentTime = millis();
-            if (currentTime - lastTouchTime < 1000) {
+            if (currentTime - lastTouchTime < 3000) {
                 comboCount++;
             } else {
                 comboCount = 1;
