@@ -28,10 +28,10 @@ function setup() {
         event.preventDefault();
     });
 
-    for (let i = 0; i < mouseCount; i++) {
-        mice.push(new Mouse());
-    }
-
+    // for (let i = 0; i < mouseCount; i++) {
+    //     mice.push(new Mouse());
+    // }
+    mice.push(new Mouse());
     bgm.loop();
     bgm.setVolume(0.2);
 }
@@ -117,7 +117,7 @@ class Mouse {
     }
 
     display() {
-        image(ratImg, this.x, this.y, 200, 300);
+        image(ratImg, this.x, this.y, 150, 250);
     }
 
     isTouched(mx, my) {
