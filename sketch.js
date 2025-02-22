@@ -2,8 +2,8 @@ let mice = [];
 let touchCount = 0;
 let comboCount = 0;
 let lastTouchTime = 0;
-let touchRadius = 300;
-let mouseCount = 1;
+let touchRadius = 200;
+let mouseCount = 3;
 let bgm;
 let touchSound;
 let ComboSound; 
@@ -12,12 +12,15 @@ let ratImg;
 let specialEffect = false;
 let effectDuration = 2000; // 演出の持続時間（ミリ秒）
 let effectStartTime = 0;
+let startFrame = 0;
+let holdFrames = 60;
+let isHolding = false;  // 命令保持の状態
 
 function preload() {
     ratImg = loadImage('48813.png');
     bgm = loadSound('BGM.mp3');
     touchSound = loadSound('SE_Gun.mp3');
-    ComboSound = loadSound('SE_comdo.mp');  // 効果音の読み込み
+    ComboSound = loadSound('SE_comdo.mp3');  // 効果音の読み込み
 }
 
 function setup() {
@@ -31,7 +34,9 @@ function setup() {
     // for (let i = 0; i < mouseCount; i++) {
     //     mice.push(new Mouse());
     // }
+
     mice.push(new Mouse());
+
     bgm.loop();
     bgm.setVolume(0.2);
 }
@@ -63,6 +68,8 @@ function draw() {
 class Mouse {
     constructor() {
         this.reset();
+        this.stopDuration = 5; // 停止状態を持続するフレーム数（60フレーム）
+        this.stopFrames = 0;    // 停止を維持するフレーム数をカウント
     }
 
     reset() {
@@ -80,9 +87,17 @@ class Mouse {
         if (random() < this.turnChance) {
             this.angle += random(-PI / 4, PI / 4);
         }
-        if (random() < this.stopChance) {
+        if (this.stopFrames > 0) {
+            // 停止状態がまだ続いている間
+            this.stopFrames--;
             this.speedX = 0;
             this.speedY = 0;
+        }
+
+        if (random() < this.stopChance) {
+          
+            this.stopFrames = this.stopDuration;
+            
         }
 
         this.speedX += cos(this.angle) * this.acceleration*random();
@@ -98,26 +113,26 @@ class Mouse {
         this.y += this.speedY;
 
         // 画面外に出ないように制限
-        if (this.x < 0) {
-            this.x = 0; 
-            this.speedX *= -1; // 反転
+        if (this.x < 75) {
+            this.x = 75; 
+            this.speedX *= -2; // 反転
         }
-        if (this.x > width) {
-            this.x = width; 
-            this.speedX *= -1; // 反転
+        if (this.x > width-75) {
+            this.x = width-75; 
+            this.speedX *= -2; // 反転
         }
-        if (this.y < 0) {
-            this.y = 0; 
-            this.speedY *= -1; // 反転
+        if (this.y < 100) {
+            this.y = 100; 
+            this.speedY *= -2; // 反転
         }
-        if (this.y > height) {
-            this.y = height; 
-            this.speedY *= -1; // 反転
+        if (this.y > height-100) {
+            this.y = height-100; 
+            this.speedY *= -2; // 反転
         }
     }
 
     display() {
-        image(ratImg, this.x, this.y, 150, 250);
+        image(ratImg, this.x, this.y, 150, 200);
     }
 
     isTouched(mx, my) {
