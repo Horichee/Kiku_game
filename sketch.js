@@ -2,7 +2,7 @@ let mice = [];
 let touchCount = 0;
 let comboCount = 0;
 let lastTouchTime = 0;
-let touchRadius = 50;
+let touchRadius = 100;
 let mouseCount = 5;
 let bgm;
 let touchSound;
@@ -65,8 +65,8 @@ class Mouse {
         this.y = random(height);
         this.speedX = random(2, 5);
         this.speedY = random(2, 5);
-        this.maxSpeed = 5;
-        this.acceleration = 0.05;
+        this.maxSpeed = 15;
+        this.acceleration = 0.1;
         this.angle = random(TWO_PI);
         this.turnChance = 0.01;
     }
@@ -107,7 +107,7 @@ class Mouse {
     }
 
     display() {
-        image(ratImg, this.x, this.y, 50, 50);
+        image(ratImg, this.x, this.y, 100, 100);
     }
 
     isTouched(mx, my) {
