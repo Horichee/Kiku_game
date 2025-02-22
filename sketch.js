@@ -70,8 +70,8 @@ class Mouse {
         this.y = random(height);
         this.speedX = random(2, 5);
         this.speedY = random(2, 5);
-        this.maxSpeed = 20;
-        this.acceleration = 2;
+        this.maxSpeed = 30;
+        this.acceleration = 3;
         this.angle = random(TWO_PI);
         this.turnChance = 0.3;
         this.stopChance = 0.03;
