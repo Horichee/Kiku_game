@@ -132,7 +132,14 @@ class Mouse {
     }
 
     display() {
-        image(ratImg, this.x, this.y, 150, 200);
+        // 画像を進行方向に回転させる
+        // 進行方向を速度ベクトルから計算
+        let angle = atan2(this.speedY, this.speedX); // speedX, speedYから角度を算出
+        push(); // 現在の状態を保存
+        translate(this.x + 75, this.y + 100); // 画像の中心に移動
+        rotate(angle-PI/2); // 進行方向に回転
+        image(ratImg, -75, -50, 150, 200); // 画像を描画（中心が (x, y) になるように）
+        pop(); // 保存した状態を復元
     }
 
     isTouched(mx, my) {
