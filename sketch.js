@@ -117,7 +117,7 @@ class Mouse {
     }
 
     display() {
-        image(ratImg, this.x, this.y, 300, 300);
+        image(ratImg, this.x, this.y, 200, 300);
     }
 
     isTouched(mx, my) {
