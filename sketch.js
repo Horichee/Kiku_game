@@ -17,7 +17,7 @@ function preload() {
     ratImg = loadImage('48813.png');
     bgm = loadSound('BGM.mp3');
     touchSound = loadSound('SE_Gun.mp3');
-    ComboSound = loadSound('SE_comdo.mp3');  // 効果音の読み込み
+    ComboSound = loadSound('SE_comdo.mp');  // 効果音の読み込み
 }
 
 function setup() {
