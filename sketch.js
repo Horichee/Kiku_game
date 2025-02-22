@@ -14,10 +14,10 @@ let effectDuration = 2000; // 演出の持続時間（ミリ秒）
 let effectStartTime = 0;
 
 function preload() {
-    ratImg = loadImage('Images/48813.png');
-    bgm = loadSound('BGM/BGM.mp3');
-    touchSound = loadSound('SE/SE_Gun.mp3');
-    ComboSound = loadSound('SE/SE_comdo.mp3');  // 効果音の読み込み
+    ratImg = loadImage('48813.png');
+    bgm = loadSound('BGM.mp3');
+    touchSound = loadSound('SE_Gun.mp3');
+    ComboSound = loadSound('SE_comdo.mp3');  // 効果音の読み込み
 }
 
 function setup() {
